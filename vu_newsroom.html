@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VU Newsroom — Identidad digital, CIAM y fraude en LATAM</title>
+<meta name="description" content="Newsroom de VU. Análisis, tendencias y noticias del ecosistema de identidad digital, CIAM, KYC/AML y prevención de fraude en LATAM y el mundo." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* =================== VU BRAND TOKENS (Manual de marca V.01) =================== */
+  :root {
+    /* Paleta sólida — manual de marca */
+    --vu-naranja: #F15E37;
+    --vu-naranja-soft: #FBD7CC;     /* tag/pill background como en manual */
+    --vu-naranja-deep: #C44826;
+    --vu-negro: #1C1D1E;
+    --vu-negro-elev: #25262A;       /* superficie elevada (cards) */
+    --vu-negro-soft: #2F3034;
+    --vu-crema: #EBE4CA;
+    --vu-gris: #666666;
+    --vu-gris-light: #B8B8B5;
+    --vu-gris-dark: #3A3B3E;
+    --vu-blanco: #FFFFFF;
+
+    /* Tipografías — Roobert (titulares) + Roboto (texto) + Aptos Mono (detalles) */
+    --font-display: 'Roobert', 'Space Grotesk', 'Roboto', Arial, sans-serif;
+    --font-body: 'Roboto', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Aptos Mono', 'Courier New', monospace;
+  }
+
+  /* Soporte Roobert via @font-face (si el archivo se sube al repo en /fonts/) */
+  @font-face {
+    font-family: 'Roobert';
+    src: url('fonts/Roobert-Regular.woff2') format('woff2');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Roobert';
+    src: url('fonts/Roobert-Medium.woff2') format('woff2');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Roobert';
+    src: url('fonts/Roobert-Bold.woff2') format('woff2');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--vu-negro);
+    color: var(--vu-crema);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at top right, rgba(241,94,55,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(241,94,55,0.04) 0%, transparent 50%);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* =================== TRIANGLE PATTERN — del manual de marca =================== */
+  .triangles-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><polygon points='14,4 24,22 4,22' fill='%23F15E37'/></svg>");
+    background-size: 28px 28px;
+    background-repeat: repeat;
+  }
+
+  /* =================== TAG PILLS — estilo manual de marca =================== */
+  /* Etiquetas con fondo crema-naranja y texto naranja, mono, redondeadas */
+  .vu-tag {
+    display: inline-block;
+    background: var(--vu-naranja-soft);
+    color: var(--vu-naranja);
+    border: 1px solid var(--vu-naranja);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .vu-tag-ghost {
+    background: transparent;
+    color: var(--vu-naranja);
+    border: 1px solid var(--vu-naranja);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  /* =================== TOP STRIP =================== */
+  .top-strip {
+    background: #141415;
+    border-bottom: 1px solid var(--vu-negro-soft);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--vu-gris-light);
+    letter-spacing: 0.06em;
+  }
+  .top-strip-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 10px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    text-transform: uppercase;
+  }
+  .top-strip a:hover { color: var(--vu-naranja); }
+
+  /* =================== MASTHEAD =================== */
+  .masthead {
+    border-bottom: 1px solid var(--vu-negro-soft);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+    background: rgba(28, 29, 30, 0.92);
+  }
+  .masthead-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 24px 32px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+  .masthead-left { display: flex; gap: 14px; align-items: center; font-family: var(--font-mono); font-size: 11px; color: var(--vu-gris-light); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ----- LOGO VU (isotipo + wordmark) ----- */
+  .vu-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .vu-logo svg { display: block; }
+  .vu-logo-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    color: var(--vu-naranja);
+    line-height: 1;
+  }
+  .masthead .vu-logo-text { font-size: 38px; }
+  .masthead-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .newsroom-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--vu-gris-light);
+  }
+
+  .masthead-right { display: flex; gap: 14px; justify-content: flex-end; align-items: center; }
+  .search-box {
+    background: var(--vu-negro-elev);
+    border: 1px solid var(--vu-negro-soft);
+    border-radius: 999px;
+    padding: 10px 18px 10px 40px;
+    color: var(--vu-crema);
+    font-family: var(--font-body);
+    font-size: 13px;
+    width: 220px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23B8B8B5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>");
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    transition: all 0.2s;
+  }
+  .search-box::placeholder { color: var(--vu-gris); }
+  .search-box:focus {
+    outline: none;
+    border-color: var(--vu-naranja);
+    width: 260px;
+  }
+  .btn-suscribir {
+    background: var(--vu-naranja);
+    color: var(--vu-negro);
+    border: none;
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.2s;
+  }
+  .btn-suscribir:hover { background: #ff7150; transform: translateY(-1px); }
+
+  /* =================== SECTIONS NAV =================== */
+  nav.sections {
+    border-bottom: 1px solid var(--vu-negro-soft);
+    background: var(--vu-negro);
+    position: sticky;
+    top: 99px;
+    z-index: 99;
+  }
+  .sections-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sections-inner::-webkit-scrollbar { display: none; }
+  .section-btn {
+    background: transparent;
+    border: none;
+    color: var(--vu-gris-light);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 16px 18px;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .section-btn:hover { color: var(--vu-crema); }
+  .section-btn.active {
+    color: var(--vu-naranja);
+    border-bottom-color: var(--vu-naranja);
+  }
+
+  /* =================== LAYOUT =================== */
+  main {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+    position: relative;
+  }
+
+  /* =================== HERO =================== */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 40px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--vu-negro-soft);
+    margin-bottom: 56px;
+    position: relative;
+  }
+  .hero-main {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .hero-image {
+    aspect-ratio: 16/10;
+    border-radius: 16px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--vu-negro-soft);
+  }
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(28,29,30,0.55) 100%);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--vu-crema);
+    transition: color 0.2s;
+  }
+  .hero-main:hover .hero-title { color: var(--vu-naranja); }
+  .hero-excerpt {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--vu-gris-light);
+    line-height: 1.55;
+    font-weight: 400;
+  }
+  .article-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--vu-gris-light);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .article-meta .author { color: var(--vu-crema); font-weight: 500; }
+  .meta-dot { width: 3px; height: 3px; background: var(--vu-gris); border-radius: 50%; }
+
+  .hero-side {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .side-card {
+    cursor: pointer;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--vu-negro-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .side-card:last-child { border-bottom: none; padding-bottom: 0; }
+  .side-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--vu-crema);
+    transition: color 0.2s;
+  }
+  .side-card:hover h3 { color: var(--vu-naranja); }
+  .side-card p { font-size: 14px; color: var(--vu-gris-light); }
+
+  /* =================== SECTION HEADERS =================== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+  .section-header h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: -0.015em;
+    color: var(--vu-crema);
+  }
+  .section-header .accent {
+    flex: 1;
+    height: 1px;
+    background: var(--vu-negro-soft);
+  }
+
+  /* =================== ARTICLE GRID =================== */
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px 30px;
+    margin-bottom: 72px;
+  }
+  .article-card {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    text-align: left;
+    color: var(--vu-crema);
+    font-family: var(--font-body);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0;
+  }
+  .article-card .card-image {
+    aspect-ratio: 16/10;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--vu-negro-soft);
+    transition: transform 0.4s;
+  }
+  .article-card:hover .card-image { transform: scale(1.015); }
+  .article-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+  .article-card:hover h3 { color: var(--vu-naranja); }
+  .article-card p { font-size: 14px; color: var(--vu-gris-light); }
+
+  /* =================== TWO COL =================== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    margin-bottom: 72px;
+  }
+  .opinion-list .opinion-item {
+    cursor: pointer;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--vu-negro-soft);
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .opinion-list .opinion-item:first-child { padding-top: 0; }
+  .opinion-list .opinion-item:last-child { border-bottom: none; }
+  .opinion-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--vu-naranja);
+    line-height: 1;
+  }
+  .opinion-item h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.3;
+    margin: 8px 0 8px;
+    transition: color 0.2s;
+  }
+  .opinion-item:hover h4 { color: var(--vu-naranja); }
+
+  /* =================== NEWSLETTER =================== */
+  .newsletter {
+    position: relative;
+    background: var(--vu-negro-elev);
+    border: 1px solid var(--vu-negro-soft);
+    border-radius: 20px;
+    padding: 56px 48px;
+    margin-bottom: 72px;
+    overflow: hidden;
+  }
+  .newsletter .triangles-bg { opacity: 0.1; }
+  .newsletter::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(241,94,55,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .newsletter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .newsletter h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin: 14px 0 14px;
+    color: var(--vu-crema);
+  }
+  .newsletter p { color: var(--vu-gris-light); font-size: 15px; }
+  .newsletter-form { display: flex; gap: 8px; margin-top: 4px; }
+  .newsletter-form input {
+    flex: 1;
+    background: var(--vu-negro);
+    border: 1px solid var(--vu-gris-dark);
+    border-radius: 999px;
+    padding: 14px 22px;
+    color: var(--vu-crema);
+    font-family: var(--font-body);
+    font-size: 14px;
+  }
+  .newsletter-form input:focus { outline: none; border-color: var(--vu-naranja); }
+  .newsletter-form button {
+    background: var(--vu-naranja);
+    color: var(--vu-negro);
+    border: none;
+    padding: 0 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: var(--font-body);
+  }
+  .newsletter-form button:hover { background: #ff7150; }
+
+  /* =================== FOOTER =================== */
+  footer {
+    background: #141415;
+    border-top: 1px solid var(--vu-negro-soft);
+    padding: 64px 32px 32px;
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  footer .triangles-bg { opacity: 0.05; }
+  .footer-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 48px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-col h5 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--vu-gris-light);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; font-size: 14px; color: var(--vu-gris-light); }
+  .footer-col a:hover { color: var(--vu-naranja); }
+  .footer-brand p { color: var(--vu-gris-light); font-size: 14px; margin-top: 16px; max-width: 360px; line-height: 1.6; }
+  .footer-bottom {
+    max-width: 1320px;
+    margin: 56px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--vu-negro-soft);
+    display: flex;
+    justify-content: space-between;
+    color: var(--vu-gris);
+    font-size: 12px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* =================== MODAL =================== */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.82);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 40px 20px;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--vu-negro-elev);
+    border: 1px solid var(--vu-negro-soft);
+    border-radius: 20px;
+    max-width: 860px;
+    width: 100%;
+    overflow: hidden;
+    animation: modalIn 0.25s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .modal-image {
+    aspect-ratio: 16/8;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .modal-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(28,29,30,0.7) 100%);
+  }
+  .modal-body { padding: 40px 48px 48px; }
+  .modal-close {
+    position: absolute;
+    top: 60px; right: calc(50% - 430px - 4px);
+    background: var(--vu-negro-elev);
+    color: var(--vu-crema);
+    border: 1px solid var(--vu-negro-soft);
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    z-index: 210;
+    transition: all 0.2s;
+  }
+  .modal-close:hover { background: var(--vu-naranja); color: var(--vu-negro); border-color: var(--vu-naranja); }
+  .modal h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin: 16px 0 18px;
+    color: var(--vu-crema);
+  }
+  .modal-content {
+    color: var(--vu-gris-light);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .modal-content p { margin-bottom: 18px; }
+  .modal-content strong { color: var(--vu-crema); font-weight: 700; }
+  .modal-content h2 {
+    font-family: var(--font-display);
+    color: var(--vu-crema);
+    font-size: 24px;
+    margin: 32px 0 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .modal-content blockquote {
+    border-left: 3px solid var(--vu-naranja);
+    padding: 8px 22px;
+    margin: 24px 0;
+    color: var(--vu-crema);
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+    font-style: normal;
+  }
+  .modal-content ul { margin: 0 0 18px 22px; }
+  .modal-content li { margin-bottom: 8px; }
+  .modal-content a { color: var(--vu-naranja); text-decoration: underline; }
+
+  /* =================== EMPTY =================== */
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--vu-gris-light);
+  }
+  .empty-state h3 { color: var(--vu-crema); font-family: var(--font-display); margin-bottom: 8px; font-weight: 700; }
+
+  /* =================== CORNER MARKS — estilo manual de marca =================== */
+  /* "2026 ........ VU" en mono en esquinas como en el manual */
+  .corner-mark {
+    position: fixed;
+    bottom: 24px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--vu-gris);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    z-index: 50;
+    pointer-events: none;
+  }
+  .corner-mark.left { left: 24px; }
+  .corner-mark.right { right: 24px; }
+
+  /* =================== RESPONSIVE =================== */
+  @media (max-width: 980px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-title { font-size: 34px; }
+    .article-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; gap: 48px; }
+    .newsletter-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: repeat(2, 1fr); }
+    .masthead-inner { grid-template-columns: 1fr; gap: 16px; }
+    .masthead-left, .masthead-right { justify-content: center; }
+    nav.sections { top: 0; position: relative; }
+    .modal-close { right: 20px; top: 20px; }
+    .corner-mark { display: none; }
+  }
+  @media (max-width: 600px) {
+    main { padding: 28px 18px 56px; }
+    .article-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 28px; }
+    .top-strip-inner { padding: 8px 18px; font-size: 10px; }
+    .masthead-inner { padding: 18px 18px; }
+    .sections-inner { padding: 0 18px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    .search-box { width: 160px; }
+    .search-box:focus { width: 180px; }
+    .modal-body { padding: 24px; }
+    .modal h1 { font-size: 26px; }
+    .newsletter { padding: 36px 24px; }
+    .newsletter h2 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+  ============ LOGOS VU OFICIALES ============
+  Pegá los archivos del logo en la misma carpeta que este index.html:
+    - logo-vu-blanco.svg        (versión blanca, para fondos oscuros — la que usamos)
+    - logo-vu-naranja.svg       (versión naranja, para fondos claros)
+    - logo-vu-contenedor.svg    (versión con contenedor negro, opcional)
+  Si preferís PNG, cambiá la extensión en los <img src="..."> de abajo.
+-->
+
+
+<!-- ============ TOP STRIP ============ -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <span id="topDate">Edición</span>
+    <span>Newsroom oficial · Identidad digital · LATAM</span>
+    <a href="https://vusecurity.com" target="_blank" rel="noopener">vusecurity.com →</a>
+  </div>
+</div>
+
+<!-- ============ MASTHEAD ============ -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-left">
+      <span class="vu-tag">Newsroom</span>
+      <span>Edición LATAM</span>
+    </div>
+    <a class="vu-logo masthead-center" href="#" onclick="event.preventDefault(); filterBy('todas');">
+      <img src="logo-vu-blanco.svg" alt="VU" style="height: 44px; width: auto; display: block;" onerror="this.onerror=null;this.src='logo-vu-blanco.png';">
+      <span class="newsroom-label">Newsroom · CIAM · Fraude · KYC</span>
+    </a>
+    <div class="masthead-right">
+      <input type="text" class="search-box" id="searchBox" placeholder="Buscar nota..." />
+      <button class="btn-suscribir" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'})">Suscribirme</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SECTIONS NAV ============ -->
+<nav class="sections">
+  <div class="sections-inner" id="sectionsNav"></div>
+</nav>
+
+<!-- ============ MAIN ============ -->
+<main>
+
+  <section class="hero" id="hero"></section>
+
+  <section>
+    <div class="section-header">
+      <span class="vu-tag-ghost">Últimas notas</span>
+      <h2>Lo más reciente</h2>
+      <span class="accent"></span>
+    </div>
+    <div class="article-grid" id="latestGrid"></div>
+  </section>
+
+  <section class="two-col">
+    <div>
+      <div class="section-header">
+        <span class="vu-tag-ghost">Análisis</span>
+        <h2>Lectura en profundidad</h2>
+        <span class="accent"></span>
+      </div>
+      <div class="article-grid" style="grid-template-columns: repeat(2, 1fr);" id="analysisGrid"></div>
+    </div>
+    <aside>
+      <div class="section-header">
+        <span class="vu-tag-ghost">Tendencias</span>
+        <h2>Más leídas</h2>
+      </div>
+      <div class="opinion-list" id="trendingList"></div>
+    </aside>
+  </section>
+
+  <section class="newsletter" id="newsletter">
+    <div class="triangles-bg"></div>
+    <div class="newsletter-grid">
+      <div>
+        <span class="vu-tag-ghost">Newsletter</span>
+        <h2>Recibí el newsroom de VU</h2>
+        <p>Análisis quincenal sobre identidad digital, fraude, regulación KYC/AML y tendencias del ecosistema en LATAM.</p>
+      </div>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='✓ Suscrito'; setTimeout(()=>this.querySelector('button').textContent='Suscribirme',2500);">
+        <input type="email" placeholder="tu@email.com" required>
+        <button type="submit">Suscribirme</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="filteredSection" style="display:none;">
+    <div class="section-header">
+      <span class="vu-tag-ghost" id="filteredTag">Sección</span>
+      <h2 id="filteredTitle">Sección</h2>
+      <span class="accent"></span>
+    </div>
+    <div class="article-grid" id="filteredGrid"></div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="triangles-bg"></div>
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <a class="vu-logo" href="#">
+        <img src="logo-vu-blanco.svg" alt="VU" style="height: 36px; width: auto; display: block;" onerror="this.onerror=null;this.src='logo-vu-blanco.png';">
+      </a>
+      <p>El newsroom oficial de VU. Cobertura del ecosistema de identidad digital, CIAM, prevención de fraude y regulación KYC/AML en LATAM y el mundo.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Secciones</h5>
+      <ul>
+        <li><a href="#" data-cat="identidad-digital">Identidad digital</a></li>
+        <li><a href="#" data-cat="ciam">CIAM</a></li>
+        <li><a href="#" data-cat="fraude">Fraude</a></li>
+        <li><a href="#" data-cat="kyc-aml">KYC / AML</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Más</h5>
+      <ul>
+        <li><a href="#" data-cat="latam">LATAM</a></li>
+        <li><a href="#" data-cat="competencia">Competencia</a></li>
+        <li><a href="#" data-cat="tendencias">Tendencias</a></li>
+        <li><a href="#" data-cat="todas">Todas las notas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>VU</h5>
+      <ul>
+        <li><a href="https://vusecurity.com" target="_blank">vusecurity.com</a></li>
+        <li><a href="https://www.linkedin.com/company/vusecurity" target="_blank">LinkedIn</a></li>
+        <li><a href="mailto:newsroom@vusecurity.com">newsroom@vusecurity.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> VU · Todos los derechos reservados</span>
+    <span>Built in Latin America. For the entire world.</span>
+  </div>
+</footer>
+
+<!-- ============ CORNER MARKS ============ -->
+<div class="corner-mark left" id="cornerYear">2026</div>
+<div class="corner-mark right">VU</div>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-backdrop" id="modal">
+  <button class="modal-close" id="modalClose" aria-label="Cerrar">×</button>
+  <article class="modal" id="modalContent"></article>
+</div>
+
+<script>
+/* =========================================================
+   VU NEWSROOM — DATA
+   Para agregar una nueva nota: copiá uno de los objetos del
+   array `articles` y completá los campos.
+   Categorías válidas: identidad-digital, ciam, fraude,
+   kyc-aml, latam, competencia, tendencias.
+   ========================================================= */
+
+const SECTIONS = [
+  { id: 'todas',             label: 'Portada' },
+  { id: 'identidad-digital', label: 'Identidad digital' },
+  { id: 'ciam',              label: 'CIAM' },
+  { id: 'fraude',            label: 'Fraude' },
+  { id: 'kyc-aml',           label: 'KYC / AML' },
+  { id: 'latam',             label: 'LATAM' },
+  { id: 'competencia',       label: 'Competencia' },
+  { id: 'tendencias',        label: 'Tendencias' },
+];
+
+/* -----------------------------------------------------------------------------
+   CÓMO AGREGAR UNA NUEVA NOTA SEMANAL
+   -----------------------------------------------------------------------------
+   1) Copiá uno de los objetos del array de abajo y pegalo arriba del todo
+      (las notas más nuevas van primero).
+   2) Completá los campos:
+        id        → identificador único (kebab-case, sin espacios)
+        title     → titular
+        excerpt   → bajada (1-2 oraciones)
+        category  → una de: identidad-digital, ciam, fraude, kyc-aml,
+                    latam, competencia, tendencias
+        author    → "Newsroom VU" o el nombre de quien firma
+        date      → 'AAAA-MM-DD'
+        readTime  → '5 min', '7 min', etc.
+        featured  → 'hero' (la nota principal de portada),
+                    'side' (las 3 notas a la derecha del hero),
+                    o eliminá el campo si va al grid de "Lo más reciente"
+        image     → URL pública de la imagen (puede ser /img/foo.jpg si la subís al repo)
+        body      → HTML libre: <p>, <h2>, <ul>/<li>, <blockquote>, <strong>, <a>
+   3) Solo puede haber UNA nota con featured: 'hero'. Las side ideales son 3.
+   4) Guardá, commit y push a GitHub Pages. Listo.
+   ----------------------------------------------------------------------------- */
+
+const articles = [
+  {
+    id: 'identidad-agentes-ia',
+    title: 'La identidad digital ya no es solo de personas: por qué los agentes de IA son el próximo gran desafío',
+    excerpt: 'Cuando un agente autónomo abre una cuenta, transfiere fondos o acepta términos en nombre de un usuario, ¿quién firmó? VU plantea un modelo de identidad delegada verificable para resolverlo.',
+    category: 'tendencias',
+    author: 'Newsroom VU',
+    date: '2026-04-26',
+    readTime: '7 min',
+    featured: 'hero',
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1400&q=80',
+    body: `
+      <p>El crecimiento de los agentes de IA generativa que operan en nombre de usuarios humanos abre un problema que la industria de identidad digital recién comienza a enfrentar: <strong>cuando un agente realiza una acción crítica, no alcanza con saber quién es el humano detrás. Hay que poder probarlo, auditarlo y revocarlo.</strong></p>
+      <p>Las plataformas de CIAM tradicionales fueron diseñadas para autenticar personas, no procesos delegados. El resultado: cada vez que un agente de IA toca una API, se abre una zona gris regulatoria.</p>
+      <h2>El modelo de identidad delegada verificable</h2>
+      <p>VU ONE incorpora un esquema en el que cada agente hereda la identidad del humano y queda vinculado a una identidad registrada y auditada. Cada acción se valida contra atributos, roles y políticas configuradas.</p>
+      <blockquote>"El problema no resuelto es: ¿quién delegó la acción? ¿El agente tiene permisos reales? ¿Es el mismo agente que inició la sesión?"</blockquote>
+      <h2>Implicancias regulatorias</h2>
+      <ul>
+        <li>KYC/AML: las normas vigentes asumen un actor humano. Los agentes operan en una zona sin definir.</li>
+        <li>Trazabilidad: se necesita un audit log que distinga acciones humanas vs. delegadas.</li>
+        <li>Revocación: poder cortar el acceso del agente sin reiniciar la identidad del humano.</li>
+      </ul>
+      <p>Para 2027, Gartner anticipa que más del 40% de las interacciones de identidad pasarán por agentes autónomos. La infraestructura para autenticarlos no existe todavía.</p>
+    `
+  },
+  {
+    id: 'renaper-modelo-latam',
+    title: 'RENAPER y el modelo argentino: cómo una integración nacional cambió la economía del onboarding en LATAM',
+    excerpt: '46 millones de ciudadanos validados en una sola fuente oficial. La pregunta que se hace el resto de la región: ¿es replicable este modelo en países sin un padrón centralizado?',
+    category: 'latam',
+    author: 'Newsroom VU',
+    date: '2026-04-22',
+    readTime: '6 min',
+    featured: 'side',
+    image: 'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1400&q=80',
+    body: `
+      <p>La integración entre VU y RENAPER posicionó al gobierno argentino como autenticador de identidad para todas las transacciones entre ciudadanos, sector público y privado. La base de la plataforma Mi Argentina — y un caso que el resto de LATAM mira con atención.</p>
+      <h2>Por qué importa</h2>
+      <p>Históricamente, el costo de validar identidad en LATAM se diluía en decenas de proveedores: bureaus, scoring privados, OCR adaptado país por país. Una sola fuente oficial reduce ese stack.</p>
+      <p>Ningún competidor global tiene esta cobertura. Se construyó en 18 años de operación regional.</p>
+    `
+  }
+];
+
+/* =========================================================
+   RUNTIME
+   ========================================================= */
+
+const $ = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+const today = new Date();
+const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+$('#topDate').textContent = `${today.getDate()} de ${months[today.getMonth()]}, ${today.getFullYear()}`;
+$('#year').textContent = today.getFullYear();
+$('#cornerYear').textContent = today.getFullYear();
+
+const navEl = $('#sectionsNav');
+SECTIONS.forEach((s, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'section-btn' + (i === 0 ? ' active' : '');
+  btn.textContent = s.label;
+  btn.dataset.cat = s.id;
+  btn.onclick = () => filterBy(s.id);
+  navEl.appendChild(btn);
+});
+
+function fmtDate(iso) {
+  const d = new Date(iso);
+  return `${d.getDate()} ${months[d.getMonth()].slice(0,3)} ${d.getFullYear()}`;
+}
+
+function getCategoryLabel(id) {
+  return SECTIONS.find(s => s.id === id)?.label || id;
+}
+
+function renderHero() {
+  const heroMain = articles.find(a => a.featured === 'hero') || articles[0];
+  const sideArticles = articles.filter(a => a.featured === 'side').slice(0, 3);
+  const sides = sideArticles.length ? sideArticles : articles.filter(a => a.id !== heroMain.id).slice(0, 3);
+
+  const html = `
+    <article class="hero-main" onclick="openArticle('${heroMain.id}')">
+      <div class="hero-image" style="background-image: url('${heroMain.image}')"></div>
+      <span class="vu-tag-ghost">${getCategoryLabel(heroMain.category)}</span>
+      <h1 class="hero-title">${heroMain.title}</h1>
+      <p class="hero-excerpt">${heroMain.excerpt}</p>
+      <div class="article-meta">
+        <span class="author">${heroMain.author}</span>
+        <span class="meta-dot"></span>
+        <span>${fmtDate(heroMain.date)}</span>
+        <span class="meta-dot"></span>
+        <span>${heroMain.readTime}</span>
+      </div>
+    </article>
+    <aside class="hero-side">
+      ${sides.map(a => `
+        <article class="side-card" onclick="openArticle('${a.id}')">
+          <span class="vu-tag-ghost">${getCategoryLabel(a.category)}</span>
+          <h3>${a.title}</h3>
+          <p>${a.excerpt.slice(0, 110)}…</p>
+          <div class="article-meta">
+            <span>${fmtDate(a.date)}</span>
+            <span class="meta-dot"></span>
+            <span>${a.readTime}</span>
+          </div>
+        </article>
+      `).join('')}
+    </aside>
+  `;
+  $('#hero').innerHTML = html;
+}
+
+function cardHTML(a) {
+  return `
+    <article class="article-card" onclick="openArticle('${a.id}')">
+      <div class="card-image" style="background-image: url('${a.image}')"></div>
+      <span class="vu-tag-ghost">${getCategoryLabel(a.category)}</span>
+      <h3>${a.title}</h3>
+      <p>${a.excerpt.slice(0, 130)}…</p>
+      <div class="article-meta">
+        <span class="author">${a.author}</span>
+        <span class="meta-dot"></span>
+        <span>${fmtDate(a.date)}</span>
+      </div>
+    </article>
+  `;
+}
+
+function renderLatest() {
+  const featuredIds = new Set(articles.filter(a => a.featured).map(a => a.id));
+  const latest = articles
+    .filter(a => !featuredIds.has(a.id))
+    .sort((a,b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 6);
+  $('#latestGrid').innerHTML = latest.map(cardHTML).join('');
+}
+
+function renderAnalysis() {
+  const analysis = articles
+    .filter(a => ['tendencias','competencia','identidad-digital'].includes(a.category))
+    .slice(0, 4);
+  $('#analysisGrid').innerHTML = analysis.map(cardHTML).join('');
+}
+
+function renderTrending() {
+  const trending = articles.slice(0, 5);
+  $('#trendingList').innerHTML = trending.map((a, i) => `
+    <div class="opinion-item" onclick="openArticle('${a.id}')">
+      <span class="opinion-num">0${i+1}</span>
+      <div>
+        <span class="vu-tag-ghost">${getCategoryLabel(a.category)}</span>
+        <h4>${a.title}</h4>
+        <div class="article-meta">
+          <span>${a.author}</span>
+          <span class="meta-dot"></span>
+          <span>${fmtDate(a.date)}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterBy(cat) {
+  $$('.section-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  const showHome = cat === 'todas';
+  $('#hero').style.display = showHome ? '' : 'none';
+  $('#latestGrid').parentElement.style.display = showHome ? '' : 'none';
+  $('.two-col').style.display = showHome ? '' : 'none';
+  $('#filteredSection').style.display = showHome ? 'none' : '';
+
+  if (!showHome) {
+    const filtered = articles.filter(a => a.category === cat);
+    $('#filteredTag').textContent = 'Sección';
+    $('#filteredTitle').textContent = getCategoryLabel(cat);
+    $('#filteredGrid').innerHTML = filtered.length
+      ? filtered.map(cardHTML).join('')
+      : `<div class="empty-state" style="grid-column: 1 / -1;"><h3>Próximamente</h3><p>Estamos preparando las próximas notas de esta sección.</p></div>`;
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+$$('a[data-cat]').forEach(a => {
+  a.onclick = (e) => { e.preventDefault(); filterBy(a.dataset.cat); };
+});
+
+const searchBox = $('#searchBox');
+searchBox.addEventListener('input', (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  if (!q) { filterBy('todas'); return; }
+  const matches = articles.filter(a =>
+    a.title.toLowerCase().includes(q) ||
+    a.excerpt.toLowerCase().includes(q) ||
+    getCategoryLabel(a.category).toLowerCase().includes(q)
+  );
+  $$('.section-btn').forEach(b => b.classList.remove('active'));
+  $('#hero').style.display = 'none';
+  $('#latestGrid').parentElement.style.display = 'none';
+  $('.two-col').style.display = 'none';
+  $('#filteredSection').style.display = '';
+  $('#filteredTag').textContent = 'Búsqueda';
+  $('#filteredTitle').textContent = `Resultados para "${q}"`;
+  $('#filteredGrid').innerHTML = matches.length
+    ? matches.map(cardHTML).join('')
+    : `<div class="empty-state" style="grid-column: 1 / -1;"><h3>Sin resultados</h3><p>No encontramos notas con ese término.</p></div>`;
+});
+
+function openArticle(id) {
+  const a = articles.find(x => x.id === id);
+  if (!a) return;
+  $('#modalContent').innerHTML = `
+    <div class="modal-image" style="background-image: url('${a.image}')"></div>
+    <div class="modal-body">
+      <span class="vu-tag-ghost">${getCategoryLabel(a.category)}</span>
+      <h1>${a.title}</h1>
+      <div class="article-meta" style="margin-bottom: 28px;">
+        <span class="author">${a.author}</span>
+        <span class="meta-dot"></span>
+        <span>${fmtDate(a.date)}</span>
+        <span class="meta-dot"></span>
+        <span>${a.readTime} de lectura</span>
+      </div>
+      <div class="modal-content">${a.body}</div>
+    </div>
+  `;
+  $('#modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  $('#modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+$('#modalClose').onclick = closeModal;
+$('#modal').onclick = (e) => { if (e.target.id === 'modal') closeModal(); };
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+renderHero();
+renderLatest();
+renderAnalysis();
+renderTrending();
+</script>
+</body>
+</html>
