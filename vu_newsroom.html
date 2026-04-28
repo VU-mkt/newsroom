@@ -199,7 +199,7 @@
     border-color: var(--vu-naranja);
     width: 260px;
   }
-  .btn-suscribir {
+  .btn-vu-link {
     background: var(--vu-naranja);
     color: var(--vu-negro);
     border: none;
@@ -210,16 +210,18 @@
     font-size: 13px;
     letter-spacing: 0.02em;
     cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
     transition: transform 0.15s, background 0.2s;
   }
-  .btn-suscribir:hover { background: #ff7150; transform: translateY(-1px); }
+  .btn-vu-link:hover { background: #ff7150; transform: translateY(-1px); color: var(--vu-negro); }
 
   /* =================== SECTIONS NAV =================== */
   nav.sections {
     border-bottom: 1px solid var(--vu-negro-soft);
     background: var(--vu-negro);
     position: sticky;
-    top: 99px;
+    top: 138px;
     z-index: 99;
   }
   .sections-inner {
@@ -320,6 +322,30 @@
   }
   .article-meta .author { color: var(--vu-crema); font-weight: 500; }
   .meta-dot { width: 3px; height: 3px; background: var(--vu-gris); border-radius: 50%; }
+  .article-source {
+    color: var(--vu-naranja);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .article-source:hover { color: #ff7150; text-decoration: underline; }
+  .modal-source-cta {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 12px 22px;
+    border: 1px solid var(--vu-naranja);
+    border-radius: 999px;
+    color: var(--vu-naranja);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .modal-source-cta:hover { background: var(--vu-naranja); color: var(--vu-negro); }
 
   .hero-side {
     display: flex;
@@ -713,29 +739,20 @@
 -->
 
 
-<!-- ============ TOP STRIP ============ -->
-<div class="top-strip">
-  <div class="top-strip-inner">
-    <span id="topDate">Edición</span>
-    <span>Newsroom oficial · Identidad digital · LATAM</span>
-    <a href="https://vusecurity.com" target="_blank" rel="noopener">vusecurity.com →</a>
-  </div>
-</div>
-
 <!-- ============ MASTHEAD ============ -->
 <header class="masthead">
   <div class="masthead-inner">
     <div class="masthead-left">
-      <span class="vu-tag">Newsroom</span>
-      <span>Edición LATAM</span>
+      <span class="vu-tag">Newsroom interno</span>
+      <span>Curaduría de cobertura externa</span>
     </div>
-    <a class="vu-logo masthead-center" href="#" onclick="event.preventDefault(); filterBy('todas');">
-      <img src="Logo.blanco.png" alt="VU" style="height: 44px; width: auto; display: block;">
-      <span class="newsroom-label">Newsroom · CIAM · Fraude · KYC</span>
+    <a class="vu-logo masthead-center" href="https://vusecurity.com" target="_blank" rel="noopener" title="Ir a vusecurity.com">
+      <img src="Logo.blanco.png" alt="VU" style="height: 78px; width: auto; display: block;">
+      <span class="newsroom-label">Identidad digital · CIAM · Fraude · KYC</span>
     </a>
     <div class="masthead-right">
       <input type="text" class="search-box" id="searchBox" placeholder="Buscar nota..." />
-      <button class="btn-suscribir" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'})">Suscribirme</button>
+      <a class="btn-vu-link" href="https://vusecurity.com" target="_blank" rel="noopener">vusecurity.com →</a>
     </div>
   </div>
 </header>
@@ -777,21 +794,6 @@
     </aside>
   </section>
 
-  <section class="newsletter" id="newsletter">
-    <div class="triangles-bg"></div>
-    <div class="newsletter-grid">
-      <div>
-        <span class="vu-tag-ghost">Newsletter</span>
-        <h2>Recibí el newsroom de VU</h2>
-        <p>Análisis quincenal sobre identidad digital, fraude, regulación KYC/AML y tendencias del ecosistema en LATAM.</p>
-      </div>
-      <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='✓ Suscrito'; setTimeout(()=>this.querySelector('button').textContent='Suscribirme',2500);">
-        <input type="email" placeholder="tu@email.com" required>
-        <button type="submit">Suscribirme</button>
-      </form>
-    </div>
-  </section>
-
   <section id="filteredSection" style="display:none;">
     <div class="section-header">
       <span class="vu-tag-ghost" id="filteredTag">Sección</span>
@@ -808,10 +810,10 @@
   <div class="triangles-bg"></div>
   <div class="footer-inner">
     <div class="footer-col footer-brand">
-      <a class="vu-logo" href="#">
-        <img src="Logo.blanco.png" alt="VU" style="height: 36px; width: auto; display: block;">
+      <a class="vu-logo" href="https://vusecurity.com" target="_blank" rel="noopener" title="Ir a vusecurity.com">
+        <img src="Logo.blanco.png" alt="VU" style="height: 44px; width: auto; display: block;">
       </a>
-      <p>El newsroom oficial de VU. Cobertura del ecosistema de identidad digital, CIAM, prevención de fraude y regulación KYC/AML en LATAM y el mundo.</p>
+      <p>Newsroom interno de VU. Curaduría de la cobertura externa relevante sobre identidad digital, CIAM, prevención de fraude y regulación KYC/AML.</p>
     </div>
     <div class="footer-col">
       <h5>Secciones</h5>
@@ -834,9 +836,8 @@
     <div class="footer-col">
       <h5>VU</h5>
       <ul>
-        <li><a href="https://vusecurity.com" target="_blank">vusecurity.com</a></li>
-        <li><a href="https://www.linkedin.com/company/vusecurity" target="_blank">LinkedIn</a></li>
-        <li><a href="mailto:newsroom@vusecurity.com">newsroom@vusecurity.com</a></li>
+        <li><a href="https://vusecurity.com" target="_blank" rel="noopener">vusecurity.com</a></li>
+        <li><a href="https://www.linkedin.com/company/vusecurity" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </div>
   </div>
@@ -877,69 +878,84 @@ const SECTIONS = [
 ];
 
 /* -----------------------------------------------------------------------------
-   CÓMO AGREGAR UNA NUEVA NOTA SEMANAL
+   NEWSROOM INTERNO VU — CURADURÍA DE COBERTURA EXTERNA
+   -----------------------------------------------------------------------------
+   Esta landing es de uso interno. Acá curamos notas y temáticas relevantes que
+   ya están publicadas en medios externos (Infobae, La Nación, Bloomberg, Finextra,
+   Forbes, etc.) y que tocan: identidad digital, CIAM, fraude, KYC/AML, LATAM,
+   competencia y tendencias del sector.
+
+   CÓMO AGREGAR UNA NOTA
    -----------------------------------------------------------------------------
    1) Copiá uno de los objetos del array de abajo y pegalo arriba del todo
       (las notas más nuevas van primero).
    2) Completá los campos:
-        id        → identificador único (kebab-case, sin espacios)
-        title     → titular
-        excerpt   → bajada (1-2 oraciones)
-        category  → una de: identidad-digital, ciam, fraude, kyc-aml,
-                    latam, competencia, tendencias
-        author    → "Newsroom VU" o el nombre de quien firma
-        date      → 'AAAA-MM-DD'
-        readTime  → '5 min', '7 min', etc.
-        featured  → 'hero' (la nota principal de portada),
-                    'side' (las 3 notas a la derecha del hero),
-                    o eliminá el campo si va al grid de "Lo más reciente"
-        image     → URL pública de la imagen (puede ser /img/foo.jpg si la subís al repo)
-        body      → HTML libre: <p>, <h2>, <ul>/<li>, <blockquote>, <strong>, <a>
-   3) Solo puede haber UNA nota con featured: 'hero'. Las side ideales son 3.
+        id          → identificador único (kebab-case, sin espacios)
+        title       → titular reescrito desde el ángulo VU
+        excerpt     → bajada (1-2 oraciones, qué pasó + por qué nos importa)
+        category    → una de: identidad-digital, ciam, fraude, kyc-aml,
+                      latam, competencia, tendencias
+        author      → "Newsroom VU"
+        date        → 'AAAA-MM-DD' (fecha de publicación de la nota original)
+        readTime    → '5 min', '7 min', etc.
+        featured    → 'hero' (la principal de portada),
+                      'side' (3 notas a la derecha del hero),
+                      o eliminá el campo si va al grid "Lo más reciente"
+        image       → URL pública de la imagen
+        source      → URL de la nota original (Infobae, etc.)
+        sourceName  → Nombre del medio (ej: 'Infobae', 'La Nación', 'Bloomberg')
+        body        → HTML libre: <p>, <h2>, <ul>/<li>, <blockquote>, <strong>, <a>
+                      Cerrá siempre con un párrafo "Por qué nos importa" o "Lectura VU".
+   3) Solo UNA nota con featured: 'hero'. Las side ideales son 3.
    4) Guardá, commit y push a GitHub Pages. Listo.
    ----------------------------------------------------------------------------- */
 
 const articles = [
   {
-    id: 'identidad-agentes-ia',
-    title: 'La identidad digital ya no es solo de personas: por qué los agentes de IA son el próximo gran desafío',
-    excerpt: 'Cuando un agente autónomo abre una cuenta, transfiere fondos o acepta términos en nombre de un usuario, ¿quién firmó? VU plantea un modelo de identidad delegada verificable para resolverlo.',
-    category: 'tendencias',
+    id: 'binance-bullrich-prevencion',
+    title: 'Binance y el caso Esteban Bullrich: lo que falló no fue la tecnología, fue la prevención',
+    excerpt: 'Una persona con ELA no logra autenticarse contra el reconocimiento facial de Binance porque su rostro cambió. El debate ya no es biometría sí o no — es qué protocolos de excepción debe tener cualquier sistema de identidad para no excluir.',
+    category: 'fraude',
     author: 'Newsroom VU',
-    date: '2026-04-26',
-    readTime: '7 min',
+    date: '2026-04-28',
+    readTime: '5 min',
     featured: 'hero',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1400&q=80',
+    image: 'https://images.unsplash.com/photo-1633265486064-086b219458ec?w=1400&q=80',
+    source: 'https://www.infobae.com/opinion/2026/04/28/binance-y-el-caso-esteban-bullrich-lo-que-fallo-fue-la-prevencion/',
+    sourceName: 'Infobae',
     body: `
-      <p>El crecimiento de los agentes de IA generativa que operan en nombre de usuarios humanos abre un problema que la industria de identidad digital recién comienza a enfrentar: <strong>cuando un agente realiza una acción crítica, no alcanza con saber quién es el humano detrás. Hay que poder probarlo, auditarlo y revocarlo.</strong></p>
-      <p>Las plataformas de CIAM tradicionales fueron diseñadas para autenticar personas, no procesos delegados. El resultado: cada vez que un agente de IA toca una API, se abre una zona gris regulatoria.</p>
-      <h2>El modelo de identidad delegada verificable</h2>
-      <p>VU ONE incorpora un esquema en el que cada agente hereda la identidad del humano y queda vinculado a una identidad registrada y auditada. Cada acción se valida contra atributos, roles y políticas configuradas.</p>
-      <blockquote>"El problema no resuelto es: ¿quién delegó la acción? ¿El agente tiene permisos reales? ¿Es el mismo agente que inició la sesión?"</blockquote>
-      <h2>Implicancias regulatorias</h2>
+      <p>Esteban Bullrich no pudo acceder a su cuenta de Binance. La razón: el sistema de reconocimiento facial dejó de reconocerlo. La ELA que sufre alteró sus rasgos al punto en que el modelo biométrico, entrenado con su rostro de hace meses, ya no encuentra match.</p>
+      <p>El abogado Jorge Monastersky publicó en Infobae una columna donde sostiene una tesis incómoda para la industria: <strong>la falla no fue tecnológica. Fue de prevención jurídica y de diseño.</strong></p>
+      <h2>El argumento</h2>
+      <p>Una empresa puede tener la mejor tecnología disponible y aun así quedar expuesta si no evaluó los riesgos humanos de su implementación. Las plataformas que dependen de biometría facial necesitan, según el autor, "protocolos de excepción biométrica" — mecanismos alternativos de validación para personas con discapacidades, enfermedades degenerativas o condiciones que alteren rasgos.</p>
+      <blockquote>"Los conflictos deberían evitarse en el diseño del producto, no resolverse en tribunales."</blockquote>
+      <h2>Lectura VU</h2>
+      <p>Este caso ilustra exactamente por qué el liveness aprobado ya no es la línea de meta y por qué la autenticación contextual — multifactor, con caminos alternativos auditables — es lo que separa a un stack de identidad maduro de uno que solo cumple en el papel.</p>
       <ul>
-        <li>KYC/AML: las normas vigentes asumen un actor humano. Los agentes operan en una zona sin definir.</li>
-        <li>Trazabilidad: se necesita un audit log que distinga acciones humanas vs. delegadas.</li>
-        <li>Revocación: poder cortar el acceso del agente sin reiniciar la identidad del humano.</li>
+        <li><strong>Diseño accesible</strong>: cualquier flujo crítico necesita un fallback no-biométrico verificable.</li>
+        <li><strong>Re-enrolamiento</strong>: actualizar la plantilla biométrica del usuario es parte del ciclo de vida, no una excepción.</li>
+        <li><strong>Compliance + experiencia</strong>: en LATAM, donde la inclusión digital es regulatoria, esto deja de ser opcional.</li>
       </ul>
-      <p>Para 2027, Gartner anticipa que más del 40% de las interacciones de identidad pasarán por agentes autónomos. La infraestructura para autenticarlos no existe todavía.</p>
     `
   },
   {
     id: 'renaper-modelo-latam',
-    title: 'RENAPER y el modelo argentino: cómo una integración nacional cambió la economía del onboarding en LATAM',
-    excerpt: '46 millones de ciudadanos validados en una sola fuente oficial. La pregunta que se hace el resto de la región: ¿es replicable este modelo en países sin un padrón centralizado?',
+    title: 'RENAPER y el modelo argentino: por qué LATAM mira la integración nacional como estándar',
+    excerpt: '46 millones de ciudadanos validados contra una sola fuente oficial. La pregunta que se hace el resto de la región: ¿se replica este modelo en países sin padrón centralizado?',
     category: 'latam',
     author: 'Newsroom VU',
     date: '2026-04-22',
     readTime: '6 min',
     featured: 'side',
     image: 'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1400&q=80',
+    source: 'https://www.argentina.gob.ar/interior/renaper',
+    sourceName: 'RENAPER',
     body: `
-      <p>La integración entre VU y RENAPER posicionó al gobierno argentino como autenticador de identidad para todas las transacciones entre ciudadanos, sector público y privado. La base de la plataforma Mi Argentina — y un caso que el resto de LATAM mira con atención.</p>
+      <p>La integración entre VU y RENAPER posicionó al gobierno argentino como autenticador de identidad para transacciones entre ciudadanos, sector público y privado. Es la base de Mi Argentina — y un caso que el resto de LATAM mira con atención.</p>
       <h2>Por qué importa</h2>
       <p>Históricamente, el costo de validar identidad en LATAM se diluía en decenas de proveedores: bureaus, scoring privados, OCR adaptado país por país. Una sola fuente oficial reduce ese stack.</p>
-      <p>Ningún competidor global tiene esta cobertura. Se construyó en 18 años de operación regional.</p>
+      <h2>Lectura VU</h2>
+      <p>Ningún competidor global tiene cobertura gubernamental activa en 8 países LATAM. Es una capa que se construyó en 18 años de operación regional y no se compra.</p>
     `
   }
 ];
@@ -953,7 +969,6 @@ const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
 const today = new Date();
 const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-$('#topDate').textContent = `${today.getDate()} de ${months[today.getMonth()]}, ${today.getFullYear()}`;
 $('#year').textContent = today.getFullYear();
 $('#cornerYear').textContent = today.getFullYear();
 
@@ -976,6 +991,11 @@ function getCategoryLabel(id) {
   return SECTIONS.find(s => s.id === id)?.label || id;
 }
 
+function sourceLine(a) {
+  if (!a.source) return '';
+  return `<span class="meta-dot"></span><a class="article-source" href="${a.source}" target="_blank" rel="noopener" onclick="event.stopPropagation();">Fuente: ${a.sourceName || 'Original'} →</a>`;
+}
+
 function renderHero() {
   const heroMain = articles.find(a => a.featured === 'hero') || articles[0];
   const sideArticles = articles.filter(a => a.featured === 'side').slice(0, 3);
@@ -993,6 +1013,7 @@ function renderHero() {
         <span>${fmtDate(heroMain.date)}</span>
         <span class="meta-dot"></span>
         <span>${heroMain.readTime}</span>
+        ${sourceLine(heroMain)}
       </div>
     </article>
     <aside class="hero-side">
@@ -1005,6 +1026,7 @@ function renderHero() {
             <span>${fmtDate(a.date)}</span>
             <span class="meta-dot"></span>
             <span>${a.readTime}</span>
+            ${sourceLine(a)}
           </div>
         </article>
       `).join('')}
@@ -1024,6 +1046,7 @@ function cardHTML(a) {
         <span class="author">${a.author}</span>
         <span class="meta-dot"></span>
         <span>${fmtDate(a.date)}</span>
+        ${sourceLine(a)}
       </div>
     </article>
   `;
@@ -1121,8 +1144,10 @@ function openArticle(id) {
         <span>${fmtDate(a.date)}</span>
         <span class="meta-dot"></span>
         <span>${a.readTime} de lectura</span>
+        ${sourceLine(a)}
       </div>
       <div class="modal-content">${a.body}</div>
+      ${a.source ? `<a class="modal-source-cta" href="${a.source}" target="_blank" rel="noopener">Leer la nota original en ${a.sourceName || 'la fuente'} →</a>` : ''}
     </div>
   `;
   $('#modal').classList.add('open');
