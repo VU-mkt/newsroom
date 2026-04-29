@@ -957,6 +957,62 @@ const articles = [
       <h2>Lectura VU</h2>
       <p>Ningún competidor global tiene cobertura gubernamental activa en 8 países LATAM. Es una capa que se construyó en 18 años de operación regional y no se compra.</p>
     `
+  },
+  {
+    id: 'lexisnexis-identidad-sintetica-latam-2026',
+    title: 'Identidad sintética y bots-agente: cómo se ve el fraude en LATAM según LexisNexis',
+    excerpt: 'El 48,3% del fraude regional ya involucra identidades sintéticas. Los ataques de bots crecieron 450% en 2025 contra wallets, pagos y plataformas de apuestas. Lo distintivo: la región tiene un patrón propio que no se resuelve con stack global.',
+    category: 'fraude',
+    author: 'Newsroom VU',
+    date: '2026-04-14',
+    readTime: '6 min',
+    featured: 'side',
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1400&q=80',
+    source: 'https://itwarelatam.com/2026/04/14/lexisnexis-informe-cibercrimen-fraude-sintetico-2026/',
+    sourceName: 'ITware Latam',
+    body: `
+      <p>El "Informe sobre Ciberdelitos 2026" de LexisNexis Risk Solutions confirma lo que el equipo de fraud analysis de la región viene viendo en producción: <strong>el patrón LATAM no se parece al patrón global.</strong></p>
+      <h2>Los números</h2>
+      <ul>
+        <li><strong>48,3%</strong> del fraude en LATAM involucra identidades sintéticas — datos reales mezclados con datos falsos para construir personas que no existen.</li>
+        <li><strong>+450%</strong> en ataques de bots entre enero y diciembre 2025, concentrados en wallets, pagos y apuestas online.</li>
+        <li><strong>+216%</strong> interanual en intentos de account takeover.</li>
+        <li>El fraude global creció 8%; e-commerce +64%; gaming +76%.</li>
+      </ul>
+      <p>El informe agrega un componente nuevo: bots-agente con IA generativa que imitan comportamiento humano lo suficientemente bien como para pasar los modelos clásicos de detección.</p>
+      <blockquote>"Los ciberdelincuentes utilizan IA sofisticada para imitar comportamiento humano."</blockquote>
+      <h2>Lectura VU</h2>
+      <p>Identidad sintética se ataca antes del onboarding, no después. Requiere cruzar señales que un proveedor de KYC global rara vez tiene en LATAM: validación gubernamental activa (RENAPER y equivalentes), device fingerprinting con histórico regional, y análisis transaccional con patrones locales — exactamente la capa que VU ONE construyó en 18 años de operación.</p>
+      <p>Para los clientes de banca, billeteras y gaming en la región, la conclusión operativa es directa: el liveness facial aprobado dejó de ser una métrica de seguridad. Es un primer filtro entre varios.</p>
+    `
+  },
+  {
+    id: 'jinkusu-cam-deepfake-kyc-bypass',
+    title: 'JINKUSU CAM: la herramienta de deepfake en tiempo real que ya está bypaseando KYC bancario',
+    excerpt: 'Una herramienta vendida en darknet usa face-swap acelerado por GPU para pasar liveness en bancos y crypto. Los ataques de inyección de deepfake crecieron 783%. La biometría facial de un solo factor ya no es prueba de identidad.',
+    category: 'fraude',
+    author: 'Newsroom VU',
+    date: '2026-04-08',
+    readTime: '7 min',
+    featured: 'side',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1400&q=80',
+    source: 'https://www.biometricupdate.com/202604/new-deepfake-tool-shows-why-face-alone-is-no-longer-proof-of-identity',
+    sourceName: 'Biometric Update',
+    body: `
+      <p>Anthony Kimery reportó en Biometric Update la aparición de <strong>JINKUSU CAM</strong>, una herramienta de deepfake en tiempo real que se vende en darknet diseñada específicamente para eludir verificación remota de identidad en bancos y plataformas cripto. No es una prueba de concepto académica — está activa, en uso, y los datos lo muestran.</p>
+      <h2>Qué hace</h2>
+      <p>JINKUSU CAM usa intercambio facial acelerado por GPU para generar movimientos faciales sintéticos en vivo. Sincroniza con el flujo de cámara del navegador o la app móvil del banco, suficiente para pasar checks de liveness pasivo y muchos activos. Los ataques de inyección de deepfake crecieron <strong>783%</strong> en el último período medido — y el correlato es directo: las plataformas que dependen de biometría facial de un solo factor están perdiendo la pelea.</p>
+      <blockquote>"La cara, por sí sola, ya no es prueba de identidad."</blockquote>
+      <h2>La respuesta de la industria</h2>
+      <p>La transición está siendo hacia verificación multicapa: análisis de integridad del dispositivo, detección de inyección de cámara virtual, y revisiones reforzadas para acciones de alto riesgo. La idea es que ningún factor sea suficiente solo.</p>
+      <h2>Lectura VU</h2>
+      <p>Esto es exactamente la conversación que tenemos hace 18 meses con clientes enterprise: el liveness aprobado no es la línea de meta. Es el primer filtro. Lo que hace defendible un stack de identidad en 2026 es la combinación de biometría + device fingerprinting persistente + cross-channel + validación gubernamental cuando aplica — el modelo que VU ONE despliega en clientes como Openbank (1,3M cuentas en 14 países), HSBC (-40% fraude) y Prisma (12M usuarios).</p>
+      <ul>
+        <li><strong>Para CISOs en banca</strong>: si tu autenticación crítica depende de un solo factor biométrico, JINKUSU ya es tu problema.</li>
+        <li><strong>Para compliance</strong>: KYC perpetuo deja de ser tendencia regulatoria — es defensa operativa.</li>
+        <li><strong>Para producto</strong>: las plataformas que diseñen "fricción inteligente" (más factores solo cuando el riesgo lo justifica) van a ganar la partida.</li>
+      </ul>
+    `
   }
 ];
 
